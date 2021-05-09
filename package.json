@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ErikBoesen/isitchickentendersday/issues"
   },
-  "homepage": "https://github.com/ErikBoesen/isitchickentendersday#readme"
+  "homepage": "https://github.com/ErikBoesen/isitchickentendersday#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
