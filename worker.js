@@ -31,11 +31,16 @@ const getMealsToday = (hallId) => {
     });
 }
 
+const getItems = (mealId) => {
+    return get('meals/' + mealId + '/items');
+}
+
 const areServing = () => {
     getHalls().then((halls) => {
-        for (let { id } of halls) {
-            getMealsToday(id).then((meals) => {
-                console.log(meals);
+        for (let { id: hallId } of halls) {
+            getMealsToday(hallId).then((meals) => {
+                for (let { id: mealId } of meals) {
+                }
             });
         }
     });
