@@ -16,7 +16,7 @@ const getHalls = () => {
     return get('halls');
 }
 
-const getMealsToday = (hallId) => {
+const getHallMealsToday = (hallId) => {
     const date = new Date();
     let month = String(date.getMonth());
     if (month.length == 1) {
@@ -38,7 +38,7 @@ const getItems = (mealId) => {
 const areServing = () => {
     getHalls().then((halls) => {
         for (let { id: hallId } of halls) {
-            getMealsToday(hallId).then((meals) => {
+            getHallMealsToday(hallId).then((meals) => {
                 for (let { id: mealId } of meals) {
                 }
             });
