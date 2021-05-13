@@ -36,10 +36,11 @@ const getItems = (mealId) => {
 }
 
 const areServing = () => {
-    getHalls().then((halls) => {
-        for (let { id: hallId } of halls) {
-            getHallMealsToday(hallId).then((meals) => {
-                for (let { id: mealId } of meals) {
+    getHallMealsToday(hallId).then((meals) => {
+        for (let { id: mealId } of meals) {
+            getItems(mealId).then((items) => {
+                for (let item of items) {
+
                 }
             });
         }
