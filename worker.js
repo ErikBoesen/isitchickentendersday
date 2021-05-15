@@ -16,7 +16,7 @@ const getHalls = () => {
     return get('halls');
 }
 
-const getHallMealsToday = (hallId) => {
+const getMealsToday = () => {
     const date = new Date();
     let month = String(date.getMonth());
     if (month.length == 1) {
@@ -26,7 +26,7 @@ const getHallMealsToday = (hallId) => {
     if (day.length == 1) {
         day = '0' + day;
     }
-    return get('halls/' + hallId + '/meals', {
+    return get('meals', {
         date: date.getFullYear() + '-' + month + '-' + day
     });
 }
