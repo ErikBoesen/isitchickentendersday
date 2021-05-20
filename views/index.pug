@@ -2,12 +2,18 @@ doctype html
 html
     head
         title Is It Chicken Tenders Day?
-        link(rel="stylesheet", href="/css/main.css")
+        link(rel='stylesheet', href='/css/main.css')
     body
         main
-            h1 #{isItChickenTendersDay}
+            if isItChickenTendersDay
+                h1 Yes
+                h2 Get your tenders on.
+            else
+                h1 No
+                h2 But you still have
+                    a(href='https://yalemenus.com') options.
         footer
             p Never miss tenders again - we'll text you!
             div.row
-                input(type="phone", placeholder="(203) 123-5555")
+                input(type='phone', placeholder='(203) 123-5555')
                 button#submit OK
