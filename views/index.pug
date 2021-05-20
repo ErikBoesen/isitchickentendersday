@@ -4,4 +4,10 @@ html
         title Is It Chicken Tenders Day?
         link(rel="stylesheet", href="/css/main.css")
     body
-        h1 #{isItChickenTendersDay}
+        main
+            h1 #{isItChickenTendersDay}
+        footer
+            p Never miss tenders again - we'll text you!
+            div.row
+                input(type="phone", placeholder="(203) 123-5555")
+                button#submit OK
