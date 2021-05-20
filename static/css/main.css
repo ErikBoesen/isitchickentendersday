@@ -1,4 +1,13 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+
+}
 h1 {
     font-size: 80px;
+    font-weight: 300;
     color: #4a7db9;
 }
