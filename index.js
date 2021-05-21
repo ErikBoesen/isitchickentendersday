@@ -7,7 +7,7 @@ app.use(express.static('static'));
 
 app.get('/', function(req, res){
     res.render('index', {
-        isItChickenTendersDay: 'Yes',
+        isItChickenTendersDay: false,
     });
 });
 
