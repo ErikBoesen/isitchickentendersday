@@ -16,5 +16,6 @@ html
         footer
             p Never miss tenders again - we'll text you!
             div.row
-                input(type='phone', placeholder='(203) 123-5555')
-                button#submit OK
+                form(action='/', method='POST')
+                    input(name='phone', type='phone', placeholder='(203) 555-5555')
+                    button(type='submit') OK
