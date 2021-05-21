@@ -36,15 +36,19 @@ const getItems = (mealId) => {
 }
 
 const areServing = () => {
-    getHallMealsToday(hallId).then((meals) => {
-        for (let { id: mealId } of meals) {
-            getItems(mealId).then((items) => {
-                for (let item of items) {
-
-                }
-            });
-        }
+    return getMealsToday().then((meals) => {
+        return Promise.all(
+            meals.map(({ id: mealId }) => {
+                console.log(mealId);
+                return;
+                /*
+                return getItems(mealId).then((items) => {
+                    return items.some(item.name.includes('Chicken Tenders'))
+                });
+                */
+            })
+        );
     });
 }
 
-areServing();
+areServing().then(console.log);
