@@ -36,19 +36,16 @@ const getItems = (mealId) => {
 }
 
 const areServing = () => {
-    return getMealsToday().then((meals) => {
+    // TODO: stop looping as soon as a result is found
+    return getMealsToday().then(meals => {
         return Promise.all(
             meals.map(({ id: mealId }) => {
-                console.log(mealId);
-                return;
-                /*
-                return getItems(mealId).then((items) => {
-                    return items.some(item.name.includes('Chicken Tenders'))
+                return getItems(mealId).then(items => {
+                    return items.some(item => item.name.includes('Chicken Tenders'));
                 });
-                */
             })
-        );
+        ).then(results => results.some(result => result));
     });
-}
+};
 
 areServing().then(console.log);
