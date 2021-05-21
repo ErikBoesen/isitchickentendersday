@@ -12,10 +12,6 @@ const get = (url, params) => {
     });
 }
 
-const getHalls = () => {
-    return get('halls');
-}
-
 const getMealsToday = () => {
     const date = new Date();
     let month = String(date.getMonth());
