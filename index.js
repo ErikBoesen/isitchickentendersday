@@ -4,6 +4,7 @@ const multer = require('multer');
 const upload = multer();
 const knex = require('knex');
 const app = express();
+const HttpStatusCodes = require('http-status-codes');
 
 const pg = knex({
   client: 'pg',
@@ -22,9 +23,14 @@ app.get('/', function(req, res) {
         isItChickenTendersDay: false,
     });
 });
-app.post('/', function(req, res) {
+app.post('/', async function(req, res) {
     const phone = req.body.phone.replace(/[^0-9]/g, '');
-    res.sendStatus(StatusCodes.OK);
+    try {
+        await pg('phones').insert({ number: phone });
+    } catch (e) {
+        console.error(e);
+    }
+    res.sendStatus(HttpStatusCodes.NO_CONTENT);
 });
 
 app.listen(process.env.PORT || 3000);
