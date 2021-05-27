@@ -8,8 +8,10 @@ const HttpStatusCodes = require('http-status-codes');
 
 const pg = knex({
     client: 'pg',
-    connection: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
+    connection: {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+    },
 });
 
 app.set('view engine', 'pug');
