@@ -7,8 +7,9 @@ const app = express();
 const HttpStatusCodes = require('http-status-codes');
 
 const pg = knex({
-  client: 'pg',
-  connection: process.env.DATABASE_URL,
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
+    ssl: true,
 });
 
 app.set('view engine', 'pug');
