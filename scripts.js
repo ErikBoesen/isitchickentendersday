@@ -1,11 +1,9 @@
-const axios = require('axios').default;
-
-const API_ROOT = 'https://yaledine.com/api/';
+const API_ROOT = 'https://api.yalemenus.com/';
 
 const get = (url, params) => {
-    return axios.get(API_ROOT + url, {
+    return fetch(API_ROOT + url + '?' + new URLSearchParams({
         params,
-    }).then((response) => {
+    })).then((response) => {
         return response.data;
     }).catch(function (error) {
         console.log(error);
