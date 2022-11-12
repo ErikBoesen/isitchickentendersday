@@ -4,12 +4,17 @@ const get = (url, params) => {
     return fetch(API_ROOT + url + '?' + new URLSearchParams({
         params,
     })).then((response) => {
-        return response.data;
+        return response.json();
     }).catch(function (error) {
         console.log(error);
     });
 }
 
+get('halls', {}).then((data) => {
+    console.log(data);
+});
+
+/*
 const getMealsToday = () => {
     const date = new Date();
     let month = String(date.getMonth());
@@ -43,3 +48,4 @@ const areServing = () => {
 };
 
 areServing().then(console.log);
+*/
