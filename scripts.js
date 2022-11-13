@@ -1,9 +1,10 @@
-const API_ROOT = 'https://api.yalemenus.com/';
-
 const elem = {
+    main: document.getElementsByTagName('main')[0],
     answer: document.getElementById('answer'),
     conjunction: document.getElementById('conjunction'),
 }
+
+const API_ROOT = 'https://api.yalemenus.com/';
 
 const get = (url, params) => {
     return fetch(API_ROOT + url + '?' + new URLSearchParams(params)).then((response) => {
@@ -12,7 +13,6 @@ const get = (url, params) => {
         console.log(error);
     });
 }
-
 
 const getToday = () => {
     const date = new Date();
@@ -39,62 +39,28 @@ const getLunch = (meals) => {
 // Check an arbitrary college's menus as they are generally all the same
 const COLLEGE_ID = 'GH';
 
-const areServing = () => {
-    return get('halls/' + COLLEGE_ID + '/meals', {date: getToday()}).then((meals) => {
-        // Chicken tenders appear to only be served at lunch
-        let lunch = getLunch(meals);
-        if (lunch) {
-            get('meals/' + lunch.id + '/items').then((items) => {
-                for (let item of items) {
-                    if (item.name.toLowerCase().includes('chicken tenders')) {
-
-                    }
+get('halls/' + COLLEGE_ID + '/meals', {date: getToday()}).then((meals) => {
+    // Chicken tenders appear to only be served at lunch
+    let lunch = getLunch(meals);
+    if (lunch) {
+        get('meals/' + lunch.id + '/items').then((items) => {
+            for (let item of items) {
+                if (item.name.toLowerCase().includes('chicken tenders')) {
+                    setServing(true);
+                    return;
                 }
-            });
-        }
-        return false;
-    });
-};
+            }
+            setServing(false);
+        });
+    } else {
+        setServing(false);
+    }
+});
 
-areServing().then((serving) => {
+const setServing = (serving) => {
     if (serving) {
         elem.answer.textContent = 'Yes';
         elem.conjunction.textContent = 'And';
     }
-});
-
-/*
-const getMealsToday = () => {
-    const date = new Date();
-    let month = String(date.getMonth());
-    if (month.length == 1) {
-        month = '0' + month;
-    }
-    let day = String(date.getDate());
-    if (day.length == 1) {
-        day = '0' + day;
-    }
-    return get('meals', {
-        date: date.getFullYear() + '-' + month + '-' + day
-    });
-}
-
-const getItems = (mealId) => {
-    return get('meals/' + mealId + '/items');
-}
-
-const areServing = () => {
-    // TODO: stop looping as soon as a result is found
-    return getMealsToday().then(meals => {
-        return Promise.all(
-            meals.map(({ id: mealId }) => {
-                return getItems(mealId).then(items => {
-                    return items.some(item => item.name.includes('Chicken Tenders'));
-                });
-            })
-        ).then(results => results.some(result => result));
-    });
+    elem.main.style.visibility = 'visible';
 };
-
-areServing().then(console.log);
-*/
