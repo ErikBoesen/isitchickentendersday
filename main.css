@@ -9,6 +9,7 @@ body {
 }
 main {
     height: 85vh;
+    visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
