@@ -16,7 +16,7 @@ const get = (url, params) => {
 
 const getToday = () => {
     const date = new Date();
-    let month = String(date.getMonth());
+    let month = String(date.getMonth() + 1);
     if (month.length === 1) {
         month = '0' + month;
     }
